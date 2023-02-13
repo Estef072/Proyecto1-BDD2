@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request,Response,jsonify, redirect,url_for
 import database as dbase
-from recetas import Recipes
+from recipes import Recipes
 
 db = dbase.dbConection()
 
@@ -13,7 +13,7 @@ def home():
     return render_template('index.html',recipes =recipesReceived )
 
 ##metod Post
-@app.route('/recetas', methods=['POST'])
+@app.route('/recipes', methods=['POST'])
 def addRecipe():
     # Creando colección si en dado caso no existe
     recipes = db['recipe_prueba']
@@ -21,8 +21,8 @@ def addRecipe():
     url = request.form['url']
     Description = request.form['Description']
     Author = request.form['Author']
-    Ingredients = request.form['Ingredients']
-    Method = request.form['Method']
+    Ingredients = request.form.getlist('Ingredients')
+    Method = request.form.getlist('Method')
 
     if Name and url and Description and Author and Ingredients and Method:
         receta = Recipes(Name,url,Description,Author,Ingredients,Method)

@@ -19,7 +19,7 @@
                         <h5 class="text-center">AGREGA TU PROPIA RECETA</h5>
                     </div>
                     <div class="card-body">
-                        <for action="/recetas" method="POST">
+                        <form action="/recipes" method="POST">
                             <label>name</label>
                             <input type="text" class="form-control mb-3" name="Name">
                             <label>url</label>
@@ -29,7 +29,7 @@
                             <label>autor</label>
                             <input type="text" class="form-control mb-3" name="Author">
                             <label>ingredients</label>
-                            <input type="text" class="form-control mb-3" name="Ingredients">
+                            <input type="" class="form-control mb-3" name="Ingredients">
                             <label>Method</label>
                             <input type="text" class="form-control mb-3" name="Method">
                             <button class="btn btn-primary" type="submit">Guardar</button>
@@ -46,25 +46,28 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
-                            <div class="row row-col-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3"></div>
-                            {% for recipe in recipes %}
+                            <div class="row row-col-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
+                                {% for recipe in recipes %}
                                 <div class="col">
                                     <li class="list-group-item mb-3">
-                                        <form action="/edit/{{recipe.name}}"method= "POST">
+                                        <form action="/edit/{{recipe.Name}}"method= "POST">
                                             <small>Name</small>
                                             <input type="text" class="form-control" value="{{recipe.Name}}" name ="Name">
                                             <small>url</small>
                                             <input type="text" class="form-control" value="{{recipe.url}}" name ="url">
                                             <small>autor</small>
                                             <input type="text" class="form-control" value="{{recipe.Author}}" name ="Author">
-                                            <button class="btn-primary" type="submit">Editar</button>
-                                            <a href="{{url_for('delete',name_recipe = recipe.name)}}" class="btn btn-danger btn-sm">Eliminar</a>
+                                            <button class="btn btn-primary btn-sm" type="submit">Editar</button>
+                                            <a href="{{url_for('delete',name_recipe = recipe.Name)}}" class="btn btn-danger btn-sm">Eliminar</a>
 
                                         </form>
                                     </li>
                                 </div>
                             
                             {% endfor %}
+
+                            </div>
+                        
                         </ul>
 
                     </div>
