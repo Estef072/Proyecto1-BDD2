@@ -8,8 +8,10 @@ ca = certifi.where()
 
 def dbConection():
     try:
-        client =MongoClient.connect(MONGO_URI,tlsCAFile=ca)
+        client =MongoClient(MONGO_URI,tlsCAFile=ca)
         db= client["prueba"]
-    except ConnectionError:
-        print("Error de coneccion con la base de datos ")
+    except Exception as e:
+        print(f"Error connecting to the database: {e}")
+        return None
+
     return db
