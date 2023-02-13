@@ -1,21 +1,19 @@
 class Recipes:
-    def __init__(self,id,name,url,description,autor,ingredients,method):
-        self.id= id
-        self.name=name
+    def __init__(self,Name,url,Description,Author,Ingredients,Method):
+        self.Name=Name
         self.url=url
-        self.description=description
-        self.autor=autor
-        self.ingredients=ingredients
-        self.method =method
+        self.Description=Description
+        self.Author=Author
+        self.Ingredients=Ingredients
+        self.Method =Method
     def toDBcollection(self):
         return{
-            'id': self.id,
-            'name':self.name,
+            'Name':self.Name,
             'url':self.url,
-            'description':self.description,
-            'autor': self.autor,
-            'ingredients':self.ingredients,
-            'method':self.method
+            'Description':self.Description,
+            'Author': self.Author,
+            'Ingredients':self.Ingredients,
+            'Method':self.Method
         }
             
 
