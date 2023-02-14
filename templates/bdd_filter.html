@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Filtrar</title>
+</head>
+<body>
+    <div class="grid-ContainerI">
+        <div class="containerOpt">
+            <div class="grid-info">
+                <label for="queries">Elige una opción: </label>
+            </div>
+        </div>
+        <div class="containerOpt">
+            <select id="queries" name="queries" class="txtOpt">
+                <optgroup label="Queries Simples">
+                  <option value="nameRecipe">Filtrar por nombre de la receta</option>
+                  <option value="ingRecipe">Filtrar por ingredientes de la receta</option>
+                  <option value="autRecipe">Filtrar por autor de la receta</option>
+                </optgroup>
+                <optgroup label="Queries Complejas">
+                  <option value="listRecipe">Lista de recetas</option>
+                  <option value="listUser">Lista de usuarios adquiriendo el recetario</option>
+                  <option value="avgIng">Promedio de ingredientes por recetas</option>
+                </optgroup>
+              </select>
+        </div>
+        <div class="containerOpt">
+            <div class="grid-info">
+                <p id="result"></p>
+            </div> 
+        </div>  
+    </div>
+    <script>
+        const select = document.getElementById("queries");
+        const result = document.getElementById("result");
+        
+        select.addEventListener("change", function() {
+          const selectedValue = select.value;
+          result.textContent = `La respuesta es: ${selectedValue}.`;
+        });
+        </script>
+</body>
+</html>
