@@ -8,9 +8,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
+    return render_template('index.html')
+
+@app.route('/bdd_add.html')
+def add():
     recipes = db['recipe_prueba']
     recipesReceived = recipes.find()
-    return render_template('index.html',recipes =recipesReceived )
+    return render_template('bdd_add.html',recipes =recipesReceived )
+
+@app.route('/bdd_edit_delete.html')
+def edit_delete():
+    recipes = db['recipe_prueba']
+    recipesReceived = recipes.find()
+    return render_template('bdd_edit_delete.html',recipes =recipesReceived )
 
 ##metod Post
 @app.route('/recipes', methods=['POST'])
@@ -25,18 +35,18 @@ def addRecipe():
     Method = request.form.getlist('Method')
 
     if Name and url and Description and Author and Ingredients and Method:
-        receta = Recipes(Name,url,Description,Author,Ingredients,Method)
+        receta = Recipes(Name, url, Description, Author, Ingredients, Method)
         ##guardando los datos 
         recipes.insert_one(receta.toDBcollection())
         reponse = jsonify({
-            'Name':Name,
-            'url':url,
-            'Description':Description,
-            'Author':Author,
-            'Ingredients':Ingredients,
-            'Method':Method
+            'Name': Name,
+            'url': url,
+            'Description': Description,
+            'Author': Author,
+            'Ingredients': Ingredients,
+            'Method': Method
         })
-        return redirect(url_for('home'))
+        return redirect(url_for('add'))
     else:
         return notFound()
     
@@ -44,7 +54,7 @@ def addRecipe():
 @app.errorhandler(404)
 def notFound(error = None):
     message = {
-        'message': 'no encontrado'+request.url,
+        'message': 'no encontrado' + request.url,
         'status': '404 No encontrado'
 
     }
@@ -56,13 +66,13 @@ def notFound(error = None):
 @app.route('/delete/<string:name_recipe>')
 
 def delete (name_recipe):
-    recipes= db['recipe_prueba']
-    recipes.delete_one({'Name':name_recipe})
-    return redirect(url_for('home'))
+    recipes = db['recipe_prueba']
+    recipes.delete_one({'Name': name_recipe})
+    return redirect(url_for('edit_delete'))
 
 
 ##metodo modify
-@app.route('/edit/<string:name_recipe>',methods=['POST'])
+@app.route('/edit/<string:name_recipe>', methods = ['POST'])
 def edit(name_recipe):
     recipes = db['recipe_prueba']
     Name = request.form['Name']
@@ -73,18 +83,17 @@ def edit(name_recipe):
     Method = request.form['Method']
 
     if  Name and url and Description and Author and Ingredients and Method:
-        recipes.update_one({'Name':name_recipe},{'$set':{          
-            'Name':Name,
-            'url':url,
-            'Description':Description,
-            'Author':Author,
-            'Ingredients':Ingredients,
-            'Method':Method}})
-        response = jsonify({'message':'receta'+name_recipe + 'actualizado correctamente'})
-        return redirect(url_for('home'))
+        recipes.update_one({'Name': name_recipe}, {'$set': {          
+            'Name': Name,
+            'url': url,
+            'Description': Description,
+            'Author': Author,
+            'Ingredients': Ingredients,
+            'Method': Method}})
+        response = jsonify({'message': 'receta' + name_recipe + 'actualizado correctamente'})
+        return redirect(url_for('edit_delete'))
     else:
         return notFound()
-
 
 #Ejecutarse como archivo princpal
 if __name__ == '__main__':
