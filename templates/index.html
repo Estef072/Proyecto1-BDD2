@@ -55,8 +55,14 @@
                                             <input type="text" class="form-control" value="{{recipe.Name}}" name ="Name">
                                             <small>url</small>
                                             <input type="text" class="form-control" value="{{recipe.url}}" name ="url">
+                                            <small>Description</small>
+                                            <input type="text" class="form-control" value="{{recipe.Description}}" name ="Description">
                                             <small>autor</small>
                                             <input type="text" class="form-control" value="{{recipe.Author}}" name ="Author">
+                                            <small>Ingredients</small>
+                                            <input type="text" class="form-control" value="{{recipe.Ingredients}}" name ="Ingredients">
+                                            <small>Method</small>
+                                            <input type="text" class="form-control" value="{{recipe.Method}}" name ="Method">
                                             <button class="btn btn-primary btn-sm" type="submit">Editar</button>
                                             <a href="{{url_for('delete',name_recipe = recipe.Name)}}" class="btn btn-danger btn-sm">Eliminar</a>
 
