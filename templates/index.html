@@ -3,86 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width= , initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetario</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center mt-5 mb-5">RECETARIO</h1>
+        <div class="box">
+            <img class="imageMain" src="../static/images/menu.png" alt="Italian Trulli">
+        </div>
     </div>
     <div class="container">
-        <div class ="row row-col-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2">
-            <div class="col-md-6 mb-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="text-center">AGREGA TU PROPIA RECETA</h5>
-                    </div>
-                    <div class="card-body">
-                        <form action="/recipes" method="POST">
-                            <label>name</label>
-                            <input type="text" class="form-control mb-3" name="Name">
-                            <label>url</label>
-                            <input type="text" class="form-control mb-3" name="url">
-                            <label>description</label>
-                            <input type="text" class="form-control mb-3" name="Description">
-                            <label>autor</label>
-                            <input type="text" class="form-control mb-3" name="Author">
-                            <label>ingredients</label>
-                            <input type="" class="form-control mb-3" name="Ingredients">
-                            <label>Method</label>
-                            <input type="text" class="form-control mb-3" name="Method">
-                            <button class="btn btn-primary" type="submit">Guardar</button>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="text-center">Listado de recetas existentes</h5>
-
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <div class="row row-col-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
-                                {% for recipe in recipes %}
-                                <div class="col">
-                                    <li class="list-group-item mb-3">
-                                        <form action="/edit/{{recipe.Name}}"method= "POST">
-                                            <small>Name</small>
-                                            <input type="text" class="form-control" value="{{recipe.Name}}" name ="Name">
-                                            <small>url</small>
-                                            <input type="text" class="form-control" value="{{recipe.url}}" name ="url">
-                                            <small>Description</small>
-                                            <input type="text" class="form-control" value="{{recipe.Description}}" name ="Description">
-                                            <small>autor</small>
-                                            <input type="text" class="form-control" value="{{recipe.Author}}" name ="Author">
-                                            <small>Ingredients</small>
-                                            <input type="text" class="form-control" value="{{recipe.Ingredients}}" name ="Ingredients">
-                                            <small>Method</small>
-                                            <input type="text" class="form-control" value="{{recipe.Method}}" name ="Method">
-                                            <button class="btn btn-primary btn-sm" type="submit">Editar</button>
-                                            <a href="{{url_for('delete',name_recipe = recipe.Name)}}" class="btn btn-danger btn-sm">Eliminar</a>
-
-                                        </form>
-                                    </li>
-                                </div>
-                            
-                            {% endfor %}
-
-                            </div>
-                        
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-        </div>  
-
+        <img class="imageMain" src="../static/images/portada.png" alt="Italian Trulli">
     </div>
-    
-
+    <div class="box2">
+        <div class="containerInfo">
+            <div class="card">
+                <a href="bdd_add.html">
+                    <button type="button" class="btnCard">
+                        <img class="imageMain" src="../static/images/cards.jpg" alt="Italian Trulli">
+                        <div class="containerCard">
+                            <h4><b>Recetario</b></h4>
+                            <p>Agregar recetas</p>
+                        </div>
+                    </button>
+                </a> 
+            </div>
+        </div>
+        <div class="containerInfo">
+            <div class="card">
+                <a href="bdd_edit_delete.html">
+                    <button type="button" class="btnCard">
+                        <img class="imageMain" src="../static/images/cards.jpg" alt="Italian Trulli">
+                        <div class="containerCard">
+                            <h4><b>Recetario</b></h4>
+                            <p>Modifica y Elimina recetas</p>
+                        </div>
+                    </button> 
+                </a>
+            </div>
+        </div>
+        <div class="containerInfo">
+            <div class="card">
+                <a href="">
+                    <button type="button" class="btnCard">
+                        <img class="imageMain" src="../static/images/cards.jpg" alt="Italian Trulli">
+                        <div class="containerCard">
+                            <h4><b>Recetario</b></h4>
+                            <p>Filtra recetas</p>
+                        </div>
+                    </button> 
+                </a>
+                
+            </div>
+        </div>
+        <div class="containerInfo">
+            <div class="card">
+                <a href="https://charts.mongodb.com/charts-project-0-kjntd/public/dashboards/63e068e4-666b-4705-87a4-5b5c9d89a960">
+                    <button type="button" class="btnCard">
+                        <img class="imageMain" src="../static/images/cards.jpg" alt="Italian Trulli">
+                        <div class="containerCard">
+                            <h4><b>Recetario</b></h4>
+                            <p>Charts</p>
+                        </div>
+                    </button>
+                </a> 
+            </div>
+        </div>
+    </div>
 </body>
 </html>
