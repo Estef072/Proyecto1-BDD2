@@ -22,6 +22,9 @@ def edit_delete():
     recipesReceived = recipes.find()
     return render_template('bdd_edit_delete.html',recipes =recipesReceived )
 
+@app.route('/bdd_filter.html')
+def filter():
+    return render_template('bdd_filter.html')
 ##metod Post
 @app.route('/recipes', methods=['POST'])
 def addRecipe():

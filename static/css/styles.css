@@ -14,25 +14,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 80%;
 }
   
 .box2 div {
     width: 100%;
     height: 100%;
+    border-radius: 5%;
 }
 
 .imageMain {
     border-radius: 8px;
     width: 100%;
-    height: 30;
+    height: 30%;
 }
 
 .containerInfo {
     display: flex;
     grid-template-columns: 200px 200px 200px;
     background-color: transparent;
-    padding: 50px 50px;
+    padding: 20px 20px;
 }
 
 .card {
@@ -48,7 +48,8 @@
   
   /* Add some padding inside the card container */
 .containerCard {
-    padding: 2px;
+    padding-top: 10%;
+    padding-bottom: 10%;
 }
 
 .btnCard {
@@ -122,4 +123,49 @@
 .box5 div {
     width: 100%;
     height: 100%;
+}
+
+.box6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 200%;
+    padding-top: 5%;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    background-color: beige;
+}
+  
+.box6 div {
+    width: 100%;
+    height: 200%;
+}
+
+.txtOpt {
+    font-size: 100000px;
+}
+
+.containerOpt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    grid-template-rows: 200px 200px 200px;
+    background-color: transparent;
+    padding: 10px 10px;
+}
+
+.grid-containerI {
+    margin-bottom: 0px;
+    height: 560px;
+    vertical-align: baseline;
+    background-color: #252525;
+    background-position: 50% 50%;
+}
+
+.grid-info {
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 90px;
+    color: black;
 }
