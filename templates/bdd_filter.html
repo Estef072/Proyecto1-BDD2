@@ -16,32 +16,57 @@
             </div>
         </div>
         <div class="containerOpt">
-            <select id="queries" name="queries" class="txtOpt">
-                <optgroup label="Queries Simples">
-                  <option value="nameRecipe">Filtrar por nombre de la receta</option>
-                  <option value="ingRecipe">Filtrar por ingredientes de la receta</option>
-                  <option value="autRecipe">Filtrar por autor de la receta</option>
-                </optgroup>
-                <optgroup label="Queries Complejas">
-                  <option value="listRecipe">Lista de recetas</option>
-                  <option value="listUser">Lista de usuarios adquiriendo el recetario</option>
-                  <option value="avgIng">Promedio de ingredientes por recetas</option>
-                </optgroup>
-              </select>
+            <form action="/recipes" method="GET">
+                <select id="queries" name="queries" class="txtOpt">
+                    <optgroup label="Queries Simples">
+                      <option value="nameRecipe">Filtrar por nombre de la receta</option>
+                      <option value="ingRecipe">Filtrar por ingredientes de la receta</option>
+                      <option value="autRecipe">Filtrar por autor de la receta</option>
+                    </optgroup>
+                    <optgroup label="Queries Complejas">
+                      <option value="listRecipe">Lista de recetas</option>
+                      <option value="listUser">Lista de usuarios adquiriendo el recetario</option>
+                      <option value="avgIng">Promedio de ingredientes por recetas</option>
+                    </optgroup>
+                </select>
+                <button type="submit">Mostrar recetas</button>
+            </form>
+            <h1>Recetas ordenadas por nombre</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Ingredientes</th>
+                    <th>Método</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                <tr>
+                    <td>{{ recipe.nameRecipe }}</td>
+                    <td>{{ recipe.Ingredients }}</td>
+                    <td>{{ recipe.Method }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+            
         </div>
-        <div class="containerOpt">
+        <!-- <div class="containerOpt">
             <div class="grid-info">
                 <p id="result"></p>
             </div> 
-        </div>  
+        </div>   -->
     </div>
     <script>
-        const select = document.getElementById("queries");
+        const selectedValue = document.getElementById("queries");
         const result = document.getElementById("result");
         
         select.addEventListener("change", function() {
-          const selectedValue = select.value;
-          result.textContent = `La respuesta es: ${selectedValue}.`;
+        const selectedValue = select.value;
+        if (selectedValue !== "") {
+            window.location.href = selectedValue;
+        }
         });
         </script>
 </body>

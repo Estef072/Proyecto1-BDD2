@@ -25,7 +25,8 @@ def edit_delete():
 @app.route('/bdd_filter.html')
 def filter():
     return render_template('bdd_filter.html')
-##metod Post
+
+##method Post
 @app.route('/recipes', methods=['POST'])
 def addRecipe():
     # Creando colección si en dado caso no existe
@@ -52,8 +53,17 @@ def addRecipe():
         return redirect(url_for('add'))
     else:
         return notFound()
-    
 
+# Filter by recipe
+@app.route('/recipes', methods=['GET'])
+def filterRecipes():
+    recipes = db['recipe_prueba']
+
+    # Realizar la consulta a la base de datos
+    recipess = list(recipes.aggregate([{"$sort": {"Name": 1}}]))
+    # Renderizar una plantilla HTML con los resultados de la consulta
+    return render_template('bdd_filter.html', recipess = recipess)
+    
 @app.errorhandler(404)
 def notFound(error = None):
     message = {
@@ -72,7 +82,6 @@ def delete (name_recipe):
     recipes = db['recipe_prueba']
     recipes.delete_one({'Name': name_recipe})
     return redirect(url_for('edit_delete'))
-
 
 ##metodo modify
 @app.route('/edit/<string:name_recipe>', methods = ['POST'])
