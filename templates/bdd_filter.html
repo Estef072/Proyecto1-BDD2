@@ -12,37 +12,50 @@
     <div class="grid-ContainerI">
         <div class="containerOpt">
             <div class="grid-info">
-                <label for="queries">Elige una opción: </label>
+                <label for="queries">Elige una opción</label>
             </div>
         </div>
         <div class="containerOpt">
-            <select id="queries" name="queries" class="txtOpt">
-                <optgroup label="Queries Simples">
-                  <option value="nameRecipe">Filtrar por nombre de la receta</option>
-                  <option value="ingRecipe">Filtrar por ingredientes de la receta</option>
-                  <option value="autRecipe">Filtrar por autor de la receta</option>
-                </optgroup>
-                <optgroup label="Queries Complejas">
-                  <option value="listRecipe">Lista de recetas</option>
-                  <option value="listUser">Lista de usuarios adquiriendo el recetario</option>
-                  <option value="avgIng">Promedio de ingredientes por recetas</option>
-                </optgroup>
-              </select>
+            <div class="containerOther">
+                <div class="card">
+                    <a href="filter_recipe.html">
+                        <button type="button" class="btnCard">
+                            <img style="height: 130px;" class="imageMain" src="../static/images/cardImg.jpg" alt="Italian Trulli">
+                            <div class="containerCard">
+                                <h4><b>Recetario</b></h4>
+                                <p>Filtrar por nombre de la receta ascendente</p>
+                            </div>
+                        </button> 
+                    </a>
+                </div>
+            </div>
+            <div class="containerOther">
+                <div class="card">
+                    <a href="filter_ing.html">
+                        <button type="button" class="btnCard">
+                            <img style="height: 130px;" class="imageMain" src="../static/images/cardImg.jpg" alt="Italian Trulli">
+                            <div class="containerCard">
+                                <h4><b>Recetario</b></h4>
+                                <p>Filtrar por ingredientes de la receta</p>
+                            </div>
+                        </button> 
+                    </a>
+                    
+                </div>
+            </div>
+            <div class="containerOther">
+                <div class="card">
+                    <a href="avg_ing.html">
+                        <button type="button" class="btnCard">
+                            <img style="height: 130px;" class="imageMain" src="../static/images/cardImg.jpg" alt="Italian Trulli">
+                            <div class="containerCard">
+                                <h4><b>Recetario</b></h4>
+                                <p>Autores con pocas recetas</p>
+                            </div>
+                        </button> 
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="containerOpt">
-            <div class="grid-info">
-                <p id="result"></p>
-            </div> 
-        </div>  
-    </div>
-    <script>
-        const select = document.getElementById("queries");
-        const result = document.getElementById("result");
-        
-        select.addEventListener("change", function() {
-          const selectedValue = select.value;
-          result.textContent = `La respuesta es: ${selectedValue}.`;
-        });
-        </script>
 </body>
 </html>
