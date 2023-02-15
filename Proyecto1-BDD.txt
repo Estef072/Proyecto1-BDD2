@@ -1,0 +1,6 @@
+Link del video de la aplicación en ejecución
+https://youtu.be/qOjW4OVKkEI
+
+
+Link del github donde se desarrollo el proyecto
+https://github.com/Estef072/Proyecto1-BDD2.git
