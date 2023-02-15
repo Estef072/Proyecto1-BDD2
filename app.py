@@ -54,16 +54,97 @@ def addRecipe():
     else:
         return notFound()
 
-# Filter by recipe
-@app.route('/recipes', methods=['GET'])
+# Filter by name
+@app.route('/filter_recipe.html', methods=['GET'])
 def filterRecipes():
     recipes = db['recipe_prueba']
 
     # Realizar la consulta a la base de datos
     recipess = list(recipes.aggregate([{"$sort": {"Name": 1}}]))
     # Renderizar una plantilla HTML con los resultados de la consulta
-    return render_template('bdd_filter.html', recipess = recipess)
-    
+    return render_template('filter_recipe.html', recipes = recipess)
+
+# Filter by name 10
+@app.route('/filter_recipe10.html', methods=['GET'])
+def limit10():
+    recipes = db['recipe_prueba']
+
+    # Realizar la consulta a la base de datos
+    pipeline = [
+        {"$sort": {"Name": 1}},
+        {"$limit": 10}
+    ]
+    recipess = list(recipes.aggregate(pipeline))
+
+    # Renderizar una plantilla HTML con los resultados de la consulta
+    return render_template('filter_recipe10.html', recipes = recipess)
+
+# Filter by name 50
+@app.route('/filter_recipe50.html', methods=['GET'])
+def limit50():
+    recipes = db['recipe_prueba']
+
+    # Realizar la consulta a la base de datos
+    pipeline = [
+        {"$sort": {"Name": 1}},
+        {"$limit": 50}
+    ]
+    recipess = list(recipes.aggregate(pipeline))
+
+    # Renderizar una plantilla HTML con los resultados de la consulta
+    return render_template('filter_recipe50.html', recipes = recipess)
+
+# Filter by name 10
+@app.route('/filter_ing10.html', methods=['GET'])
+def limit10I():
+    recipes = db['recipe_prueba']
+
+    # Realizar la consulta a la base de datos
+    pipeline = [
+        {"$sort": {"Ingredients": 1}},
+        {"$limit": 10}
+    ]
+    recipess = list(recipes.aggregate(pipeline))
+
+    # Renderizar una plantilla HTML con los resultados de la consulta
+    return render_template('filter_ing10.html', recipes = recipess)
+
+# Filter by name 50
+@app.route('/filter_ing50.html', methods=['GET'])
+def limit50I():
+    recipes = db['recipe_prueba']
+
+    # Realizar la consulta a la base de datos
+    pipeline = [
+        {"$sort": {"Ingredients": 1}},
+        {"$limit": 50}
+    ]
+    recipess = list(recipes.aggregate(pipeline))
+
+    # Renderizar una plantilla HTML con los resultados de la consulta
+    return render_template('filter_ing50.html', recipes = recipess)
+
+# Filter by ingredient
+@app.route('/filter_ing.html', methods=['GET'])
+def filterIng():
+    recipes = db['recipe_prueba']
+
+    # Realizar la consulta a la base de datos
+    recipess = list(recipes.aggregate([{"$sort": {"Ingredients": 1}}]))
+    # Renderizar una plantilla HTML con los resultados de la consulta
+    return render_template('filter_ing.html', recipes = recipess)
+
+@app.route("/avg_ing.html")
+def authors_with_few_recipes():
+    recipes = db['recipe_prueba']
+    pipeline = [
+        { '$group': { '_id': '$Author', 'count': { '$sum': 1 } } },
+        { '$sort': { 'count': 1 } },
+        { '$limit': 20 }
+    ]
+    result = list(recipes.aggregate(pipeline))
+    return render_template('avg_ing.html', recipes = result)
+
 @app.errorhandler(404)
 def notFound(error = None):
     message = {
